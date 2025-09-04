@@ -80,10 +80,15 @@
       font-weight: 700; letter-spacing:.2px; color: var(--brand-ink);
     }
     .brand .logo {
-      width:36px; height:36px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--brand-ink), var(--brand-ink-2));
-      display:grid; place-items:center; color:#fff; font-size:.9rem; box-shadow: var(--shadow-1);
-    }
+  width:40px;
+  height:40px;
+  border-radius:10px;         /* tweak if you want square edges */
+  object-fit:contain;          /* keep full logo visible */
+  display:block;               /* reset from grid */
+  background:transparent;      /* remove gradient background */
+  box-shadow: var(--shadow-1);
+}
+
     nav ul {
       list-style: none; margin:0; padding:0;
       display:flex; gap: 1.25rem;
@@ -247,7 +252,16 @@
   <header class="site-header" role="banner">
     <div class="container nav" aria-label="Primary">
       <a href="#" class="brand" aria-label="Bristol City Hotel home">
-        <span class="logo" aria-hidden="true">BCH</span>
+       <img
+  class="logo"
+  src="https://i.postimg.cc/GtpqSchB/Logo-Bristol-City-FC-2019-svg.png"
+  alt="Bristol City Hotel logo"
+  width="40"
+  height="40"
+  decoding="async"
+/>
+<span>Bristol City Hotel</span>
+
         <span>Bristol City Hotel</span>
       </a>
       <nav aria-label="Main">
