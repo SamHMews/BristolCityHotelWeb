@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <!-- 
-    Bristol City Hotel – Homepage (revised per requested changes)
-    - Black header & footer
-    - Primary CTAs in red (#e41f27)
+    Bristol City Hotel – Homepage (latest refinements)
+    - Softer deep grey header & footer
+    - Larger brand/logo; restored nav anchors (Rooms/About/Contact) + Book Now
     - Hero uses Bristol landmark image
-    - Icons standardised to red
-    - Two separate room sections (Hotel A / Hotel B) wired to the two Distributor instances
+    - Two room sections: Hotel A (Property A), Hotel B (Property B)
+    - Icons + primary CTAs in red (#e41f27)
+    - Multi-property widget still available (Book Now buttons), default city Bristol
   -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bristol City Hotel | Official Site | Book Direct</title>
-  <meta name="description" content="Bristol City Hotel – contemporary city-centre hotel by the Harbourside. Book direct for the best rates and flexible terms." />
-  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Bristol City Hotel – a contemporary city-centre hotel by the Harbourside. Book direct for the best rates, flexible terms, and exclusive perks." />
+  <meta name="theme-color" content="#14171a" />
   <link rel="preconnect" href="https://api.mews-demo.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 
@@ -21,7 +22,7 @@
   <meta property="og:title" content="Bristol City Hotel" />
   <meta property="og:description" content="Contemporary city-centre hotel by the Harbourside. Book direct." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop" />
 
   <!-- Mews Booking Engine loader (must be in <head>) -->
   <script src="https://api.mews-demo.com/distributor/distributor.min.js" defer></script>
@@ -33,7 +34,8 @@
     :root{
       --brand-ink:#1f3a56;
       --brand-ink-2:#0e2236;
-      --primary:#e41f27;        /* requested red for all primary CTAs & icons */
+      --primary:#e41f27;          /* CTA red */
+      --surface-dark:#14171a;     /* soft deep grey for header & footer */
       --text:#1c1c1c;
       --muted:#6b7280;
       --bg:#ffffff;
@@ -54,49 +56,36 @@
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
     button{font:inherit}
-
-    /* Utilities */
     .container{max-width:var(--container);margin-inline:auto;padding-inline:1rem}
     .muted{color:var(--muted)}
     .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);border:0}
 
     /* --------------------------
-       Header (black) / Nav
-       * Navigation links removed per request
+       Header / Nav (soft deep grey, taller, larger brand)
     ---------------------------*/
     header.site-header{
       position:sticky;top:0;z-index:50;
-      background:#000;color:#fff;border-bottom:1px solid #111;
+      background:var(--surface-dark);color:#fff;border-bottom:1px solid #0e0f10;
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;min-height:70px}
-    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.2px;color:#fff}
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:86px;padding-block:.4rem}
+    .brand{display:flex;align-items:center;gap:.8rem;font-weight:800;letter-spacing:.2px;color:#fff}
     .brand .logo{
-      width:60px;height:60px;border-radius:10px;object-fit:contain;display:block;background:transparent
+      width:72px;height:72px;border-radius:10px;object-fit:contain;display:block;background:transparent
     }
+    .brand span{font-size:1.35rem;line-height:1}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1.25rem;align-items:center}
+    nav a{color:#e9e9e9;font-weight:600}
+    nav a:hover{color:#fff}
     .nav-cta{display:flex;align-items:center;gap:.75rem}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-      padding:.75rem 1.1rem;border-radius:999px;border:1px solid var(--border);
-      background:#fff;cursor:pointer;transition:transform .05s ease,box-shadow .2s ease,background .2s ease;
-      box-shadow:var(--shadow-1)
+      padding:.85rem 1.2rem;border-radius:999px;border:1px solid #2a2d31;
+      background:#fff;color:#111;cursor:pointer;transition:transform .05s ease,box-shadow .2s ease,background .2s ease;
+      box-shadow:0 6px 24px rgba(0,0,0,.18)
     }
     .btn:hover{transform:translateY(-1px)}
     .btn-primary{background:var(--primary);color:#fff;border-color:transparent}
-    .btn-outline{background:transparent;color:#fff;border-color:#333}
-    .menu-toggle{display:none} /* no sidebar/mobile menu required now */
-
-    /* --------------------------
-       Top Booking CTA block
-    ---------------------------*/
-    .booking-ctas{background:var(--bg-soft);border-bottom:1px solid var(--border)}
-    .booking-ctas .wrap{display:grid;gap:1rem;padding-block:1rem}
-    .cta-grid{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr)}
-    .cta-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:.75rem}
-    .cta-card h3{margin:.25rem 0;font-size:1.05rem;color:var(--brand-ink)}
-    .cta-card p{margin:0;color:var(--muted);font-size:.95rem}
-    .cta-card .row{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
-    .city-select{padding:.55rem .7rem;border-radius:10px;border:1px solid var(--border);background:#fff}
-    @media (max-width:960px){.cta-grid{grid-template-columns:1fr}}
+    .btn-outline{background:transparent;color:#fff;border-color:#2a2d31}
 
     /* --------------------------
        Hero (Bristol landmark)
@@ -129,7 +118,7 @@
     .grid-2{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
     @media (max-width:960px){.grid-3,.grid-2{grid-template-columns:1fr}}
 
-    /* Amenities (icons standardised to red) */
+    /* Amenities (icons red) */
     .amenity{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;display:flex;gap:.9rem;box-shadow:var(--shadow-1)}
     .amenity svg{width:28px;height:28px;color:var(--primary);flex:0 0 28px}
     .amenity h3{margin:.1rem 0 .25rem 0;font-size:1.05rem}
@@ -149,112 +138,53 @@
     @media (max-width:960px){.contact{grid-template-columns:1fr}}
     .map{width:100%;border:0;aspect-ratio:16/11;border-radius:var(--radius);box-shadow:var(--shadow-1)}
 
-    /* Footer (black) */
-    footer{border-top:1px solid #111;background:#000;color:#cfcfcf}
+    /* Footer (soft deep grey to match header) */
+    footer{border-top:1px solid #0e0f10;background:var(--surface-dark);color:#cfcfcf}
     footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;padding-block:2rem}
     footer a{color:#f2f2f2}
-    footer .fine{border-top:1px solid #111;color:#a9a9a9;padding-block:1rem;font-size:.9rem}
+    footer .fine{border-top:1px solid #0e0f10;color:#a9a9a9;padding-block:1rem;font-size:.9rem}
     @media (max-width:960px){footer .cols{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <!-- =========================
-       Header (nav links removed)
+       Header (with nav + Book Now)
   ========================== -->
   <header class="site-header" role="banner">
-    <div class="container nav">
+    <div class="container nav" aria-label="Primary">
       <a href="#" class="brand" aria-label="Bristol City Hotel home">
         <img
           class="logo"
           src="https://i.postimg.cc/GtpqSchB/Logo-Bristol-City-FC-2019-svg.png"
-          alt="Bristol City Hotel logo" width="60" height="60" decoding="async" />
+          alt="Bristol City Hotel logo" width="72" height="72" decoding="async" />
         <span>Bristol City Hotel</span>
       </a>
 
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#rooms-hotel-a">Rooms</a></li>
+          <li><a href="#amenities">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
       <div class="nav-cta">
-        <button id="open-primary-book" class="btn btn-primary" type="button" aria-label="Book direct">Book direct</button>
+        <button id="open-primary-book" class="btn btn-primary" type="button" aria-label="Book now">Book now</button>
       </div>
     </div>
   </header>
 
   <!-- =========================
-       Booking CTAs (TOP)
-  ========================== -->
-  <section id="book" class="booking-ctas" aria-label="Booking options">
-    <div class="container wrap">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-        <h2 style="margin:0;color:var(--brand-ink)">Choose your booking experience</h2>
-        <p class="muted" style="margin:0">Multi-property search, two separate properties, or a custom widget.</p>
-      </div>
-
-      <div class="cta-grid">
-        <!-- CTA 1: Multi Property Booking Engine -->
-        <article class="cta-card" aria-labelledby="mpbe-title">
-          <div class="row" style="justify-content:space-between;">
-            <h3 id="mpbe-title">Multi Property Booking Engine</h3>
-            <label for="citySelect" class="visually-hidden">Choose city</label>
-            <select id="citySelect" class="city-select" aria-label="Select city">
-              <option value="bristol" selected>Bristol</option>
-              <option value="london">London</option>
-              <option value="paris">Paris</option>
-            </select>
-          </div>
-          <p>Open one widget that searches across multiple properties. We’ll pre-select your city.</p>
-          <div class="row">
-            <button id="mpbeButton" class="btn btn-primary" type="button" disabled>Loading…</button>
-            <span class="muted">Demo env</span>
-          </div>
-          <p class="muted" style="font-size:.85rem">Configuration IDs:&nbsp;<code>a5e73d2e-5313-4393-a5f4-b26d00d2c904</code>, <code>a9d7516e-3022-4f77-afc7-afc400a6ba93</code>, <code>61bfb3d7-24c2-477d-9266-ae9a014eea3b</code></p>
-        </article>
-
-        <!-- CTA 2: Two independent booking engines -->
-        <article class="cta-card" aria-labelledby="dual-title">
-          <h3 id="dual-title">2 × Booking Engine</h3>
-          <p>Open either property’s booking engine from its own button. Good for sister hotels.</p>
-          <div class="grid-2">
-            <div class="card" style="box-shadow:none">
-              <div class="body">
-                <strong>Property A</strong>
-                <span class="muted">Config <code>6feda065-62b7-4276-b192-b26d00d2ce98</code></span>
-                <button class="btn btn-primary open-left" type="button">Open booking widget</button>
-              </div>
-            </div>
-            <div class="card" style="box-shadow:none">
-              <div class="body">
-                <strong>Property B</strong>
-                <span class="muted">Config <code>99a4d7f1-9800-48aa-a950-ae9a014ef5c4</code></span>
-                <button class="btn btn-primary open-right" type="button">Open booking widget</button>
-              </div>
-            </div>
-          </div>
-          <p class="muted" style="margin-top:.25rem;font-size:.9rem">Note: each opens in an overlay. Use one at a time.</p>
-        </article>
-
-        <!-- CTA 3: Custom Booking Engine -->
-        <article class="cta-card" aria-labelledby="custom-title">
-          <h3 id="custom-title">Custom Booking Engine</h3>
-          <p>Launch a bespoke booking interface hosted externally. Ideal for deep customisation or A/B tests.</p>
-          <div class="row">
-            <a class="btn btn-outline" href="https://samhmews.github.io/bookingengine/" target="_blank" rel="noopener">Open custom engine</a>
-            <span class="muted">New tab</span>
-          </div>
-          <p class="muted" style="font-size:.85rem">External demo at <code>samhmews.github.io/bookingengine/</code></p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================
-       Hero (landmark image)
+       Hero (Bristol landmark)
   ========================== -->
   <section class="hero" aria-label="Welcome to Bristol City Hotel">
-    <!-- Bristol landmark: Clifton Suspension Bridge (Unsplash) -->
+    <!-- Clifton Suspension Bridge at dusk (Unsplash) -->
     <img
       class="bg"
       loading="eager"
       fetchpriority="high"
-      alt="Clifton Suspension Bridge overlooking the Avon Gorge in Bristol"
-      src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1920&auto=format&fit=crop" />
+      alt="Clifton Suspension Bridge spanning the Avon Gorge at dusk, Bristol"
+      src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1920&auto=format&fit=crop" />
     <div class="container content">
       <span class="eyebrow">Harbourside • City Centre</span>
       <h1>Modern comfort in the heart of Bristol</h1>
@@ -278,7 +208,7 @@
   </div>
 
   <!-- =========================
-       Amenities (icons now red)
+       Amenities (About)
   ========================== -->
   <section id="amenities" aria-labelledby="amenities-title">
     <div class="container">
@@ -316,8 +246,7 @@
   </section>
 
   <!-- =========================
-       Rooms – Hotel A
-       Buttons link to Property A (.open-left)
+       Rooms – Hotel A (Property A)
   ========================== -->
   <section id="rooms-hotel-a" aria-labelledby="rooms-a-title">
     <div class="container">
@@ -327,7 +256,7 @@
       </div>
       <div class="grid-3">
         <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Classic Double" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2e57?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Classic Double room" />
           <div class="body">
             <h3 itemprop="name">Classic Double</h3>
             <span class="meta">Sleeps 2 • 16–18 m² • City view</span>
@@ -337,8 +266,9 @@
             </div>
           </div>
         </article>
+
         <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Superior King" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Superior King room with desk" />
           <div class="body">
             <h3 itemprop="name">Superior King</h3>
             <span class="meta">Sleeps 2 • 22 m² • Workspace</span>
@@ -348,8 +278,9 @@
             </div>
           </div>
         </article>
+
         <article class="card" itemscope itemtype="https://schema.org/Suite">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Junior Suite" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Junior Suite lounge area" />
           <div class="body">
             <h3 itemprop="name">Junior Suite</h3>
             <span class="meta">Sleeps 3 • 30–35 m² • Lounge</span>
@@ -364,8 +295,7 @@
   </section>
 
   <!-- =========================
-       Rooms – Hotel B
-       Buttons link to Property B (.open-right)
+       Rooms – Hotel B (Property B)
   ========================== -->
   <section id="rooms-hotel-b" aria-labelledby="rooms-b-title">
     <div class="container">
@@ -375,7 +305,7 @@
       </div>
       <div class="grid-3">
         <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – City Twin" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – City Twin room" />
           <div class="body">
             <h3 itemprop="name">City Twin</h3>
             <span class="meta">Sleeps 2 • 18 m² • Twin beds</span>
@@ -385,8 +315,9 @@
             </div>
           </div>
         </article>
+
         <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – Executive King" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1551776235-dde6d4829808?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – Executive King room" />
           <div class="body">
             <h3 itemprop="name">Executive King</h3>
             <span class="meta">Sleeps 2 • 24 m² • Workspace</span>
@@ -396,8 +327,9 @@
             </div>
           </div>
         </article>
+
         <article class="card" itemscope itemtype="https://schema.org/Suite">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – Harbourside Suite" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – Harbourside Suite with balcony" />
           <div class="body">
             <h3 itemprop="name">Harbourside Suite</h3>
             <span class="meta">Sleeps 3 • 35–40 m² • Balcony</span>
@@ -435,7 +367,7 @@
   </section>
 
   <!-- =========================
-       Footer (black)
+       Footer (deep grey)
   ========================== -->
   <footer role="contentinfo">
     <div class="container cols">
@@ -464,7 +396,7 @@
   </footer>
 
   <!-- =========================
-       Structured data
+       Structured data (Hotel)
   ========================== -->
   <script type="application/ld+json">
   {
@@ -486,7 +418,7 @@
       {"@type":"LocationFeatureSpecification","name":"Co-working lounge","value":true}
     ],
     "image": [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop"
     ]
   }
   </script>
@@ -500,59 +432,56 @@
     const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
     // Year
-    $('#year').textContent = new Date().getFullYear();
+    (function(){ const y = $('#year'); if (y) y.textContent = new Date().getFullYear(); })();
 
     // Smooth anchor scroll
     document.documentElement.style.scrollBehavior = 'smooth';
 
     // ---- MEWS BOOKING WIDGETS ----
-    // 1) MULTI-PROPERTY BOOKING ENGINE
-    const cityIdMap = { london:'london-city-id', paris:'paris-city-id', bristol:'bristol-city-id' };
-    const mpbeButton = $('#mpbeButton');
-    const citySelect = $('#citySelect');
+    // Multi-property widget (used by "Book now" buttons in header/hero/contact)
+    const DEFAULT_CITY_ID = 'bristol-city-id'; // replace with real city ID when available
 
     function initMultiProperty(){
       if(!window.Mews) return console.warn('Mews library not yet loaded');
       Mews.Distributor(
-        { configurationIds:[
-          'a5e73d2e-5313-4393-a5f4-b26d00d2c904',
-          'a9d7516e-3022-4f77-afc7-afc400a6ba93',
-          '61bfb3d7-24c2-477d-9266-ae9a014eea3b'
-        ]},
+        {
+          configurationIds: [
+            'a5e73d2e-5313-4393-a5f4-b26d00d2c904',
+            'a9d7516e-3022-4f77-afc7-afc400a6ba93',
+            '61bfb3d7-24c2-477d-9266-ae9a014eea3b'
+          ]
+        },
         function(api){
-          mpbeButton.textContent = 'Search multi-property';
-          mpbeButton.disabled = false;
-
           const openers = [
             $('#open-primary-book'),
             $('#open-primary-book-hero'),
-            $('#open-primary-book-contact'),
-            $('#open-primary-book-amenities')
+            $('#open-primary-book-amenities'),
+            $('#open-primary-book-contact')
           ].filter(Boolean);
 
-          const openWithCity = () => {
-            const cityId = cityIdMap[citySelect.value] || cityIdMap.bristol;
-            api.setCity(cityId);
+          const openWithDefaults = () => {
+            if (DEFAULT_CITY_ID) api.setCity(DEFAULT_CITY_ID);
             api.open();
             injectDistributorBranding();
           };
 
-          mpbeButton.addEventListener('click', openWithCity);
-          openers.forEach(btn => btn.addEventListener('click', openWithCity));
+          openers.forEach(btn => btn.addEventListener('click', openWithDefaults));
         },
         { dataBaseUrl:'https://api.mews-demo.com' }
       );
     }
 
-    // 2) DUAL ENGINES (Hotel A / Hotel B)
+    // Dual-property widgets (Hotel A / Hotel B)
     function initDualEngines(){
       if(!window.Mews) return;
+
       // Hotel A -> .open-left
       Mews.Distributor(
         { configurationIds:['6feda065-62b7-4276-b192-b26d00d2ce98'], openElements:'.open-left' },
         function(apiLeft){ /* apiLeft.setLanguageCode('en-GB'); */ },
         { dataBaseUrl:'https://api.mews-demo.com' }
       );
+
       // Hotel B -> .open-right
       Mews.Distributor(
         { configurationIds:['99a4d7f1-9800-48aa-a950-ae9a014ef5c4'], openElements:'.open-right' },
@@ -561,7 +490,7 @@
       );
     }
 
-    // Style the Distributor modal to match brand (red primary, landmark header)
+    // Distributor modal branding: landmark header image + red primary
     function injectDistributorBranding(){
       const tryInject = () => {
         const modal = document.querySelector('mews-distributor');
@@ -569,7 +498,7 @@
         const styleTag = document.createElement('style');
         styleTag.textContent = `
           .distributor-header{
-            background-image:url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop');
+            background-image:url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop');
             background-size:cover;background-position:center;
           }
           :host{
