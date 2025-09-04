@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
   <!-- 
-    Bristol City Hotel – Production-ready single-file homepage
-    - Semantic HTML5, modern CSS3, light JS
-    - Fully responsive
-    - Includes 3 Booking CTAs (Mews Distributor)
-    - Clean, accessible, and performance-conscious
+    Bristol City Hotel – Homepage (revised per requested changes)
+    - Black header & footer
+    - Primary CTAs in red (#e41f27)
+    - Hero uses Bristol landmark image
+    - Icons standardised to red
+    - Two separate room sections (Hotel A / Hotel B) wired to the two Distributor instances
   -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bristol City Hotel | Official Site | Book Direct</title>
-  <meta name="description" content="Bristol City Hotel – a contemporary city-centre hotel moments from the Harbourside. Book direct for the best rates, flexible terms, and exclusive perks." />
-  <meta name="theme-color" content="#1f3a56" />
+  <meta name="description" content="Bristol City Hotel – contemporary city-centre hotel by the Harbourside. Book direct for the best rates and flexible terms." />
+  <meta name="theme-color" content="#000000" />
   <link rel="preconnect" href="https://api.mews-demo.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 
@@ -27,265 +28,152 @@
 
   <style>
     /* --------------------------
-       Core design tokens
+       Design tokens
     ---------------------------*/
-    :root {
-      --brand-ink: #1f3a56;      /* Primary brand */
-      --brand-ink-2: #0e2236;    /* Deep shade */
-      --brand-accent: #d78b3a;   /* Warm accent for CTAs */
-      --text: #1c1c1c;
-      --muted: #6b7280;
-      --bg: #ffffff;
-      --bg-soft: #f6f7f9;
-      --border: #e5e7eb;
-      --radius: 14px;
-      --shadow-1: 0 6px 24px rgba(0,0,0,.08);
-      --shadow-2: 0 10px 30px rgba(0,0,0,.12);
-      --container: 1200px;
+    :root{
+      --brand-ink:#1f3a56;
+      --brand-ink-2:#0e2236;
+      --primary:#e41f27;        /* requested red for all primary CTAs & icons */
+      --text:#1c1c1c;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --bg-soft:#f6f7f9;
+      --border:#e5e7eb;
+      --radius:14px;
+      --shadow-1:0 6px 24px rgba(0,0,0,.08);
+      --container:1200px;
     }
 
     /* Reset-ish */
-    * { box-sizing: border-box; }
-    html, body { margin:0; padding:0; }
-    body {
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.5;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+      color:var(--text);background:var(--bg);line-height:1.5
     }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
 
-    /* Utility */
-    .container { max-width: var(--container); margin-inline: auto; padding-inline: 1rem; }
-    .visually-hidden { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); border:0; }
-    .muted { color: var(--muted); }
+    /* Utilities */
+    .container{max-width:var(--container);margin-inline:auto;padding-inline:1rem}
+    .muted{color:var(--muted)}
+    .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);border:0}
 
     /* --------------------------
-       Header / Nav
+       Header (black) / Nav
+       * Navigation links removed per request
     ---------------------------*/
-    header.site-header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,.9);
-      backdrop-filter: saturate(150%) blur(8px);
-      border-bottom: 1px solid var(--border);
+    header.site-header{
+      position:sticky;top:0;z-index:50;
+      background:#000;color:#fff;border-bottom:1px solid #111;
     }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      min-height: 64px;
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:70px}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.2px;color:#fff}
+    .brand .logo{
+      width:60px;height:60px;border-radius:10px;object-fit:contain;display:block;background:transparent
     }
-    .brand {
-      display:flex; align-items:center; gap:.6rem;
-      font-weight: 700; letter-spacing:.2px; color: var(--brand-ink);
+    .nav-cta{display:flex;align-items:center;gap:.75rem}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+      padding:.75rem 1.1rem;border-radius:999px;border:1px solid var(--border);
+      background:#fff;cursor:pointer;transition:transform .05s ease,box-shadow .2s ease,background .2s ease;
+      box-shadow:var(--shadow-1)
     }
-    .brand .logo {
-  width:60px;
-  height:60px;
-  border-radius:10px;         /* tweak if you want square edges */
-  object-fit:contain;          /* keep full logo visible */
-  display:block;               /* reset from grid */
-  background:transparent;      /* remove gradient background */
-  box-shadow: var(--shadow-1);
-}
-
-    nav ul {
-      list-style: none; margin:0; padding:0;
-      display:flex; gap: 1.25rem;
-    }
-    nav a { color: var(--brand-ink); font-weight: 600; }
-    .nav-cta {
-      display:flex; align-items:center; gap:.75rem;
-    }
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:.5rem; padding:.75rem 1.1rem; border-radius: 999px; border:1px solid var(--border);
-      background:#fff; cursor:pointer; transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
-      box-shadow: var(--shadow-1);
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-    .btn-primary { background: var(--brand-accent); color: #fff; border-color: transparent; }
-    .btn-outline { background:#fff; color: var(--brand-ink); }
-    .menu-toggle { display:none; }
-
-    @media (max-width: 960px) {
-      nav { display:none; }
-      .menu-toggle { display:inline-flex; }
-      .nav-sheet {
-        position: fixed; inset: 64px 0 0 0; background:#fff; padding:1rem; display:none;
-        border-top:1px solid var(--border);
-      }
-      .nav-sheet.open { display:block; }
-      .nav-sheet ul { display:grid; gap:1rem; }
-      .nav-cta { display:none; }
-    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--primary);color:#fff;border-color:transparent}
+    .btn-outline{background:transparent;color:#fff;border-color:#333}
+    .menu-toggle{display:none} /* no sidebar/mobile menu required now */
 
     /* --------------------------
        Top Booking CTA block
     ---------------------------*/
-    .booking-ctas {
-      background: var(--bg-soft);
-      border-bottom: 1px solid var(--border);
-    }
-    .booking-ctas .wrap {
-      display:grid; gap: 1rem; padding-block: 1rem;
-    }
-    .cta-grid {
-      display:grid; gap:1rem; grid-template-columns: repeat(3, 1fr);
-    }
-    .cta-card {
-      background:#fff; border:1px solid var(--border); border-radius: var(--radius);
-      padding:1rem; box-shadow: var(--shadow-1);
-      display:flex; flex-direction: column; gap:.75rem;
-    }
-    .cta-card h3 { margin:.25rem 0; font-size:1.05rem; color: var(--brand-ink); }
-    .cta-card p { margin:0; color: var(--muted); font-size:.95rem; }
-    .cta-card .row { display:flex; align-items:center; gap:.75rem; flex-wrap: wrap; }
-    .cta-card code { background: #f3f4f6; padding:.2rem .4rem; border-radius:6px; }
-
-    .city-select {
-      padding:.55rem .7rem; border-radius: 10px; border:1px solid var(--border); background:#fff;
-    }
-
-    @media (max-width: 960px) {
-      .cta-grid { grid-template-columns: 1fr; }
-    }
+    .booking-ctas{background:var(--bg-soft);border-bottom:1px solid var(--border)}
+    .booking-ctas .wrap{display:grid;gap:1rem;padding-block:1rem}
+    .cta-grid{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr)}
+    .cta-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:.75rem}
+    .cta-card h3{margin:.25rem 0;font-size:1.05rem;color:var(--brand-ink)}
+    .cta-card p{margin:0;color:var(--muted);font-size:.95rem}
+    .cta-card .row{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+    .city-select{padding:.55rem .7rem;border-radius:10px;border:1px solid var(--border);background:#fff}
+    @media (max-width:960px){.cta-grid{grid-template-columns:1fr}}
 
     /* --------------------------
-       Hero
+       Hero (Bristol landmark)
     ---------------------------*/
-    .hero {
-      position: relative; isolation:isolate; min-height: 64vh; display:grid; align-items: end;
-      background: #0b1826;
-      color: #fff;
+    .hero{position:relative;isolation:isolate;min-height:64vh;display:grid;align-items:end;color:#fff;background:#0b1826}
+    .hero img.bg{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.68;filter:saturate(107%) contrast(108%);z-index:-1
     }
-    .hero img.bg {
-      position:absolute; inset:0; width:100%; height:100%; object-fit: cover; opacity:.65; filter: saturate(105%) contrast(105%);
-      z-index:-1;
-    }
-    .hero .content {
-      padding-block: clamp(2rem, 6vw, 5rem);
-    }
-    .eyebrow {
-      display:inline-block; padding:.35rem .7rem; border-radius: 999px;
-      background: rgba(255,255,255,.14); backdrop-filter: blur(2px); font-weight:600; letter-spacing:.2px;
-    }
-    .hero h1 {
-      margin:.75rem 0 .5rem 0; font-size: clamp(2rem, 4.2vw, 3.2rem); line-height:1.1; letter-spacing:.2px;
-    }
-    .hero p { max-width: 58ch; color:#e7ecf3; }
-    .hero .actions { margin-top: 1rem; display:flex; gap:.75rem; flex-wrap: wrap; }
+    .hero .content{padding-block:clamp(2rem,6vw,5rem)}
+    .eyebrow{display:inline-block;padding:.35rem .7rem;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(2px);font-weight:600;letter-spacing:.2px}
+    .hero h1{margin:.75rem 0 .5rem 0;font-size:clamp(2rem,4.2vw,3.2rem);line-height:1.1}
+    .hero p{max-width:58ch;color:#e7ecf3}
+    .hero .actions{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
 
     /* --------------------------
-       Trust badges / ribbon
+       Trust ribbon
     ---------------------------*/
-    .ribbon {
-      background:#fff; border-bottom:1px solid var(--border);
-    }
-    .ribbon .row {
-      display:grid; grid-template-columns: repeat(4, 1fr); gap:1rem; padding-block: .9rem;
-      text-align:center; color: var(--muted); font-weight:600;
-    }
-    .ribbon .row span { display:flex; gap:.5rem; align-items:center; justify-content:center; }
-    @media (max-width: 800px) { .ribbon .row { grid-template-columns: repeat(2, 1fr); } }
+    .ribbon{background:#fff;border-bottom:1px solid var(--border)}
+    .ribbon .row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-block:.9rem;text-align:center;color:var(--muted);font-weight:600}
+    .ribbon .row span{display:flex;gap:.5rem;align-items:center;justify-content:center}
+    @media (max-width:800px){.ribbon .row{grid-template-columns:repeat(2,1fr)}}
 
     /* --------------------------
-       Sections
+       Sections & grids
     ---------------------------*/
-    section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
-    .section-title {
-      display:flex; align-items:end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem;
-    }
-    .section-title h2 { margin:0; font-size: clamp(1.4rem, 2.6vw, 2rem); color: var(--brand-ink); }
-    .grid-3 { display:grid; gap:1rem; grid-template-columns: repeat(3, 1fr); }
-    .grid-2 { display:grid; gap:1rem; grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 960px) { .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+    section{padding-block:clamp(2.5rem,6vw,4.5rem)}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}
+    .section-title h2{margin:0;font-size:clamp(1.4rem,2.6vw,2rem);color:var(--brand-ink)}
+    .grid-3{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr)}
+    .grid-2{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
+    @media (max-width:960px){.grid-3,.grid-2{grid-template-columns:1fr}}
 
-    /* Amenities */
-    .amenity {
-      background: #fff; border:1px solid var(--border); border-radius: var(--radius); padding:1rem; display:flex; gap:.9rem; box-shadow: var(--shadow-1);
-    }
-    .amenity svg { width:28px; height:28px; color: var(--brand-accent); flex: 0 0 28px; }
-    .amenity h3 { margin:.1rem 0 .25rem 0; font-size:1.05rem; }
-    .amenity p { margin:0; color: var(--muted); font-size:.95rem; }
+    /* Amenities (icons standardised to red) */
+    .amenity{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;display:flex;gap:.9rem;box-shadow:var(--shadow-1)}
+    .amenity svg{width:28px;height:28px;color:var(--primary);flex:0 0 28px}
+    .amenity h3{margin:.1rem 0 .25rem 0;font-size:1.05rem}
+    .amenity p{margin:0;color:var(--muted);font-size:.95rem}
 
-    /* Rooms */
-    .card {
-      border:1px solid var(--border); border-radius: var(--radius); overflow: clip; background:#fff; box-shadow: var(--shadow-1);
-      display:flex; flex-direction: column;
-    }
-    .card .media { aspect-ratio: 16 / 10; background:#eef2f7; }
-    .card .body { padding:1rem; display:grid; gap:.35rem; }
-    .card .meta { color: var(--muted); font-size:.95rem; }
-    .price { font-weight:800; color: var(--brand-ink); }
-    .card .actions { display:flex; gap:.6rem; margin-top:.35rem; flex-wrap: wrap; }
+    /* Cards (rooms) */
+    .card{border:1px solid var(--border);border-radius:var(--radius);overflow:clip;background:#fff;box-shadow:var(--shadow-1);display:flex;flex-direction:column}
+    .card .media{aspect-ratio:16/10;background:#eef2f7}
+    .card .body{padding:1rem;display:grid;gap:.35rem}
+    .card .meta{color:var(--muted);font-size:.95rem}
+    .price{font-weight:800;color:var(--brand-ink)}
+    .card .actions{display:flex;gap:.6rem;margin-top:.35rem;flex-wrap:wrap}
 
     /* Contact */
-    .contact {
-      display:grid; grid-template-columns: 1.1fr .9fr; gap:1rem;
-    }
-    .contact .panel {
-      background:#fff; border:1px solid var(--border); border-radius: var(--radius); padding:1rem; box-shadow: var(--shadow-1);
-    }
-    @media (max-width: 960px) { .contact { grid-template-columns: 1fr; } }
-    .map {
-      width:100%; border:0; aspect-ratio: 16 / 11; border-radius: var(--radius); box-shadow: var(--shadow-1);
-    }
+    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}
+    .contact .panel{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-1)}
+    @media (max-width:960px){.contact{grid-template-columns:1fr}}
+    .map{width:100%;border:0;aspect-ratio:16/11;border-radius:var(--radius);box-shadow:var(--shadow-1)}
 
-    /* Footer */
-    footer {
-      border-top:1px solid var(--border); background:#0e2236; color:#c9d5e2;
-    }
-    footer .cols {
-      display:grid; grid-template-columns: 2fr 1fr 1fr; gap:1rem; padding-block: 2rem;
-    }
-    footer a { color:#e9f0f8; }
-    footer .fine { border-top:1px solid rgba(255,255,255,.08); color:#9fb3c5; padding-block: 1rem; font-size:.9rem; }
-    @media (max-width: 960px) { footer .cols { grid-template-columns: 1fr; } }
+    /* Footer (black) */
+    footer{border-top:1px solid #111;background:#000;color:#cfcfcf}
+    footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;padding-block:2rem}
+    footer a{color:#f2f2f2}
+    footer .fine{border-top:1px solid #111;color:#a9a9a9;padding-block:1rem;font-size:.9rem}
+    @media (max-width:960px){footer .cols{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <!-- =========================
-       Header / Navigation
+       Header (nav links removed)
   ========================== -->
   <header class="site-header" role="banner">
-    <div class="container nav" aria-label="Primary">
+    <div class="container nav">
       <a href="#" class="brand" aria-label="Bristol City Hotel home">
-       <img
-  class="logo"
-  src="https://i.postimg.cc/GtpqSchB/Logo-Bristol-City-FC-2019-svg.png"
-  alt="Bristol City Hotel logo"
-  width="60"
-  height="60"
-  decoding="async"
-/>
-<span>Bristol City Hotel</span>
-
+        <img
+          class="logo"
+          src="https://i.postimg.cc/GtpqSchB/Logo-Bristol-City-FC-2019-svg.png"
+          alt="Bristol City Hotel logo" width="60" height="60" decoding="async" />
+        <span>Bristol City Hotel</span>
       </a>
-      <nav aria-label="Main">
-        <ul>
-          <li><a href="#rooms">Rooms</a></li>
-          <li><a href="#amenities">Amenities</a></li>
-          <li><a href="#contact">Location & Contact</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </nav>
+
       <div class="nav-cta">
-        <a href="#book" class="btn btn-outline" aria-label="Open booking options">Booking options</a>
         <button id="open-primary-book" class="btn btn-primary" type="button" aria-label="Book direct">Book direct</button>
       </div>
-      <button class="btn menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
-    </div>
-    <div id="mobileNav" class="nav-sheet" role="dialog" aria-modal="false" aria-labelledby="mobileNavTitle">
-      <h2 id="mobileNavTitle" class="visually-hidden">Navigation</h2>
-      <ul>
-        <li><a href="#rooms">Rooms</a></li>
-        <li><a href="#amenities">Amenities</a></li>
-        <li><a href="#contact">Location & Contact</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#book">Booking options</a></li>
-      </ul>
     </div>
   </header>
 
@@ -294,15 +182,15 @@
   ========================== -->
   <section id="book" class="booking-ctas" aria-label="Booking options">
     <div class="container wrap">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap">
-        <h2 style="margin:0; color:var(--brand-ink)">Choose your booking experience</h2>
-        <p class="muted" style="margin:0">Three ways to launch the booking engine: multi-property, two separate properties, or a custom widget.</p>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+        <h2 style="margin:0;color:var(--brand-ink)">Choose your booking experience</h2>
+        <p class="muted" style="margin:0">Multi-property search, two separate properties, or a custom widget.</p>
       </div>
 
       <div class="cta-grid">
         <!-- CTA 1: Multi Property Booking Engine -->
         <article class="cta-card" aria-labelledby="mpbe-title">
-          <div class="row" style="justify-content: space-between;">
+          <div class="row" style="justify-content:space-between;">
             <h3 id="mpbe-title">Multi Property Booking Engine</h3>
             <label for="citySelect" class="visually-hidden">Choose city</label>
             <select id="citySelect" class="city-select" aria-label="Select city">
@@ -313,7 +201,7 @@
           </div>
           <p>Open one widget that searches across multiple properties. We’ll pre-select your city.</p>
           <div class="row">
-            <button id="mpbeButton" class="btn btn-primary" type="button">Loading…</button>
+            <button id="mpbeButton" class="btn btn-primary" type="button" disabled>Loading…</button>
             <span class="muted">Demo env</span>
           </div>
           <p class="muted" style="font-size:.85rem">Configuration IDs:&nbsp;<code>a5e73d2e-5313-4393-a5f4-b26d00d2c904</code>, <code>a9d7516e-3022-4f77-afc7-afc400a6ba93</code>, <code>61bfb3d7-24c2-477d-9266-ae9a014eea3b</code></p>
@@ -328,18 +216,18 @@
               <div class="body">
                 <strong>Property A</strong>
                 <span class="muted">Config <code>6feda065-62b7-4276-b192-b26d00d2ce98</code></span>
-                <button class="btn open-left" type="button">Open booking widget</button>
+                <button class="btn btn-primary open-left" type="button">Open booking widget</button>
               </div>
             </div>
             <div class="card" style="box-shadow:none">
               <div class="body">
                 <strong>Property B</strong>
                 <span class="muted">Config <code>99a4d7f1-9800-48aa-a950-ae9a014ef5c4</code></span>
-                <button class="btn open-right" type="button">Open booking widget</button>
+                <button class="btn btn-primary open-right" type="button">Open booking widget</button>
               </div>
             </div>
           </div>
-          <p class="muted" style="margin-top:.25rem; font-size:.9rem">Note: each opens in an overlay. Use one at a time.</p>
+          <p class="muted" style="margin-top:.25rem;font-size:.9rem">Note: each opens in an overlay. Use one at a time.</p>
         </article>
 
         <!-- CTA 3: Custom Booking Engine -->
@@ -347,7 +235,7 @@
           <h3 id="custom-title">Custom Booking Engine</h3>
           <p>Launch a bespoke booking interface hosted externally. Ideal for deep customisation or A/B tests.</p>
           <div class="row">
-            <a class="btn btn-outline" href="https://samhmews.github.io/bookingengine/" target="_blank" rel="noopener" aria-label="Open custom booking engine in new tab">Open custom engine</a>
+            <a class="btn btn-outline" href="https://samhmews.github.io/bookingengine/" target="_blank" rel="noopener">Open custom engine</a>
             <span class="muted">New tab</span>
           </div>
           <p class="muted" style="font-size:.85rem">External demo at <code>samhmews.github.io/bookingengine/</code></p>
@@ -357,18 +245,22 @@
   </section>
 
   <!-- =========================
-       Hero
+       Hero (landmark image)
   ========================== -->
   <section class="hero" aria-label="Welcome to Bristol City Hotel">
-    <!-- Royalty-free Bristol image (credit: Unsplash) -->
-    <img class="bg" loading="eager" fetchpriority="high" alt="Bristol Harbourside at golden hour" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1920&auto=format&fit=crop" />
+    <!-- Bristol landmark: Clifton Suspension Bridge (Unsplash) -->
+    <img
+      class="bg"
+      loading="eager"
+      fetchpriority="high"
+      alt="Clifton Suspension Bridge overlooking the Avon Gorge in Bristol"
+      src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1920&auto=format&fit=crop" />
     <div class="container content">
       <span class="eyebrow">Harbourside • City Centre</span>
       <h1>Modern comfort in the heart of Bristol</h1>
       <p>Steps from the vibrant Harbourside, Bristol City Hotel pairs contemporary design with warm West Country hospitality. Book direct for member-only rates, flexible cancellations, and late checkout (subject to availability).</p>
       <div class="actions">
         <button class="btn btn-primary" id="open-primary-book-hero" type="button">Check availability</button>
-        <a href="#rooms" class="btn">Explore rooms</a>
       </div>
     </div>
   </section>
@@ -386,13 +278,13 @@
   </div>
 
   <!-- =========================
-       Amenities
+       Amenities (icons now red)
   ========================== -->
   <section id="amenities" aria-labelledby="amenities-title">
     <div class="container">
       <div class="section-title">
         <h2 id="amenities-title">Amenities that make a difference</h2>
-        <a href="#open-amenities" class="btn btn-outline" onclick="document.getElementById('open-primary-book').click(); return false;">Book a stay</a>
+        <button class="btn btn-primary" id="open-primary-book-amenities" type="button">Book a stay</button>
       </div>
       <div class="grid-3">
         <div class="amenity">
@@ -417,57 +309,101 @@
         </div>
         <div class="amenity">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <div><h3>11am checkout</h3><p>Complimentary late checkout for direct bookers when available.</p></div>
+          <div><h3>11:00 checkout</h3><p>Complimentary late checkout for direct bookers when available.</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- =========================
-       Rooms
+       Rooms – Hotel A
+       Buttons link to Property A (.open-left)
   ========================== -->
-  <section id="rooms" aria-labelledby="rooms-title">
+  <section id="rooms-hotel-a" aria-labelledby="rooms-a-title">
     <div class="container">
       <div class="section-title">
-        <h2 id="rooms-title">Rooms & Suites</h2>
-        <a href="#book" class="btn btn-outline">See availability</a>
+        <h2 id="rooms-a-title">Hotel A – Rooms</h2>
+        <button class="btn btn-primary open-left" type="button" aria-label="Book Hotel A">Book Hotel A</button>
       </div>
       <div class="grid-3">
         <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop" alt="Classic Double room with soft lighting" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Classic Double" />
           <div class="body">
             <h3 itemprop="name">Classic Double</h3>
             <span class="meta">Sleeps 2 • 16–18 m² • City view</span>
             <span class="price">From £109 / night</span>
             <div class="actions">
-              <button class="btn btn-primary open-left" type="button" aria-label="Book Classic Double">Book</button>
-              <a href="#" class="btn">Details</a>
+              <button class="btn btn-primary open-left" type="button">Book now</button>
             </div>
           </div>
         </article>
-
         <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="Executive King room with desk" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Superior King" />
           <div class="body">
-            <h3 itemprop="name">Executive King</h3>
-            <span class="meta">Sleeps 2 • 22–24 m² • Workspace</span>
+            <h3 itemprop="name">Superior King</h3>
+            <span class="meta">Sleeps 2 • 22 m² • Workspace</span>
             <span class="price">From £139 / night</span>
             <div class="actions">
-              <button class="btn btn-primary open-right" type="button" aria-label="Book Executive King">Book</button>
-              <a href="#" class="btn">Details</a>
+              <button class="btn btn-primary open-left" type="button">Book now</button>
             </div>
           </div>
         </article>
-
         <article class="card" itemscope itemtype="https://schema.org/Suite">
-          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1200&auto=format&fit=crop" alt="Harbourside Suite living area" />
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1200&auto=format&fit=crop" alt="Hotel A – Junior Suite" />
+          <div class="body">
+            <h3 itemprop="name">Junior Suite</h3>
+            <span class="meta">Sleeps 3 • 30–35 m² • Lounge</span>
+            <span class="price">From £189 / night</span>
+            <div class="actions">
+              <button class="btn btn-primary open-left" type="button">Book now</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Rooms – Hotel B
+       Buttons link to Property B (.open-right)
+  ========================== -->
+  <section id="rooms-hotel-b" aria-labelledby="rooms-b-title">
+    <div class="container">
+      <div class="section-title">
+        <h2 id="rooms-b-title">Hotel B – Rooms</h2>
+        <button class="btn btn-primary open-right" type="button" aria-label="Book Hotel B">Book Hotel B</button>
+      </div>
+      <div class="grid-3">
+        <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – City Twin" />
+          <div class="body">
+            <h3 itemprop="name">City Twin</h3>
+            <span class="meta">Sleeps 2 • 18 m² • Twin beds</span>
+            <span class="price">From £119 / night</span>
+            <div class="actions">
+              <button class="btn btn-primary open-right" type="button">Book now</button>
+            </div>
+          </div>
+        </article>
+        <article class="card" itemscope itemtype="https://schema.org/HotelRoom">
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – Executive King" />
+          <div class="body">
+            <h3 itemprop="name">Executive King</h3>
+            <span class="meta">Sleeps 2 • 24 m² • Workspace</span>
+            <span class="price">From £149 / night</span>
+            <div class="actions">
+              <button class="btn btn-primary open-right" type="button">Book now</button>
+            </div>
+          </div>
+        </article>
+        <article class="card" itemscope itemtype="https://schema.org/Suite">
+          <img class="media" loading="lazy" src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop" alt="Hotel B – Harbourside Suite" />
           <div class="body">
             <h3 itemprop="name">Harbourside Suite</h3>
-            <span class="meta">Sleeps 3 • 35 m² • Lounge & balcony</span>
-            <span class="price">From £199 / night</span>
+            <span class="meta">Sleeps 3 • 35–40 m² • Balcony</span>
+            <span class="price">From £209 / night</span>
             <div class="actions">
-              <button class="btn btn-primary" id="open-primary-book-rooms" type="button" aria-label="Book Harbourside Suite">Book</button>
-              <a href="#" class="btn">Details</a>
+              <button class="btn btn-primary open-right" type="button">Book now</button>
             </div>
           </div>
         </article>
@@ -499,45 +435,25 @@
   </section>
 
   <!-- =========================
-       FAQ (lite)
-  ========================== -->
-  <section id="faq" aria-labelledby="faq-title">
-    <div class="container">
-      <div class="section-title"><h2 id="faq-title">Good to know</h2></div>
-      <div class="grid-2">
-        <details class="panel" style="padding:1rem; border:1px solid var(--border); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1)">
-          <summary><strong>Check-in & checkout times</strong></summary>
-          <p>Check-in from 15:00, checkout by 11:00. Early arrivals and late departures available on request.</p>
-        </details>
-        <details class="panel" style="padding:1rem; border:1px solid var(--border); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1)">
-          <summary><strong>Breakfast & dining</strong></summary>
-          <p>Breakfast served 07:00–10:30 weekdays, 08:00–11:00 weekends. All-day dining menu available in the lounge.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================
-       Footer
+       Footer (black)
   ========================== -->
   <footer role="contentinfo">
     <div class="container cols">
       <div>
-        <h3 style="margin-top:0">Bristol City Hotel</h3>
-        <p class="muted">Independent city-centre hotel on the Harbourside. Book direct for member-only benefits and the best available rate.</p>
+        <h3 style="margin-top:0;color:#fff">Bristol City Hotel</h3>
+        <p class="muted" style="color:#cfcfcf">Independent city-centre hotel on the Harbourside. Book direct for member-only benefits and the best available rate.</p>
       </div>
       <div>
-        <h4>Hotel</h4>
-        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:.5rem">
-          <li><a href="#rooms">Rooms</a></li>
-          <li><a href="#amenities">Amenities</a></li>
+        <h4 style="color:#fff">Hotel</h4>
+        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem">
+          <li><a href="#rooms-hotel-a">Hotel A – Rooms</a></li>
+          <li><a href="#rooms-hotel-b">Hotel B – Rooms</a></li>
           <li><a href="#contact">Location</a></li>
-          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
-        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:.5rem">
+        <h4 style="color:#fff">Contact</h4>
+        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem">
           <li><a href="mailto:stay@bristolcityhotel.com">stay@bristolcityhotel.com</a></li>
           <li><a href="tel:+441170000000">+44 (0)117 000 0000</a></li>
           <li>1 Harbourside Way, Bristol BS1</li>
@@ -548,7 +464,7 @@
   </footer>
 
   <!-- =========================
-       Structured data (Hotel)
+       Structured data
   ========================== -->
   <script type="application/ld+json">
   {
@@ -579,138 +495,87 @@
        Behaviour & Booking widgets
   ========================== -->
   <script>
-    // --- Helpers
+    // Helpers
     const $ = (sel, ctx=document) => ctx.querySelector(sel);
     const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
     // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    $('#year').textContent = new Date().getFullYear();
 
-    // Mobile menu
-    const menuBtn = document.getElementById('menuToggle');
-    const sheet = document.getElementById('mobileNav');
-    menuBtn.addEventListener('click', () => {
-      const open = sheet.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(open));
-    });
-    // Close sheet on link click
-    $$('#mobileNav a').forEach(a => a.addEventListener('click', () => {
-      sheet.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
-    }));
-
-    // Smooth anchor scroll (native is fine in modern browsers)
+    // Smooth anchor scroll
     document.documentElement.style.scrollBehavior = 'smooth';
 
     // ---- MEWS BOOKING WIDGETS ----
-    // IMPORTANT:
-    // - We load distributor.min.js from api.mews-demo.com in <head>.
-    // - All widgets here point to DEMO environment via dataBaseUrl.
-    // - Replace configurationIds and city IDs with live ones when going to production.
+    // 1) MULTI-PROPERTY BOOKING ENGINE
+    const cityIdMap = { london:'london-city-id', paris:'paris-city-id', bristol:'bristol-city-id' };
+    const mpbeButton = $('#mpbeButton');
+    const citySelect = $('#citySelect');
 
-    // 1) MULTI PROPERTY BOOKING ENGINE (CTA 1)
-    const cityIdMap = {
-      // Replace placeholders with your real city IDs when available
-      london: 'london-city-id',
-      paris: 'paris-city-id',
-      bristol: 'bristol-city-id'
-    };
-    const mpbeButton = document.getElementById('mpbeButton');
-    const citySelect = document.getElementById('citySelect');
-
-    // Initialise multiproperty widget
-    let mpbeApiRef = null;
-    function initMultiProperty() {
-      if (!window.Mews) return console.warn('Mews library not yet loaded');
+    function initMultiProperty(){
+      if(!window.Mews) return console.warn('Mews library not yet loaded');
       Mews.Distributor(
-        {
-          configurationIds: [
-            'a5e73d2e-5313-4393-a5f4-b26d00d2c904',
-            'a9d7516e-3022-4f77-afc7-afc400a6ba93',
-            '61bfb3d7-24c2-477d-9266-ae9a014eea3b'
-          ]
-        },
-        function (api) {
-          mpbeApiRef = api;
+        { configurationIds:[
+          'a5e73d2e-5313-4393-a5f4-b26d00d2c904',
+          'a9d7516e-3022-4f77-afc7-afc400a6ba93',
+          '61bfb3d7-24c2-477d-9266-ae9a014eea3b'
+        ]},
+        function(api){
           mpbeButton.textContent = 'Search multi-property';
           mpbeButton.disabled = false;
 
-          // Primary “Book direct” buttons reuse this API instance
           const openers = [
-            document.getElementById('open-primary-book'),
-            document.getElementById('open-primary-book-hero'),
-            document.getElementById('open-primary-book-rooms'),
-            document.getElementById('open-primary-book-contact')
+            $('#open-primary-book'),
+            $('#open-primary-book-hero'),
+            $('#open-primary-book-contact'),
+            $('#open-primary-book-amenities')
           ].filter(Boolean);
 
-          openers.forEach(btn => btn.addEventListener('click', () => {
+          const openWithCity = () => {
             const cityId = cityIdMap[citySelect.value] || cityIdMap.bristol;
             api.setCity(cityId);
             api.open();
             injectDistributorBranding();
-          }));
+          };
 
-          mpbeButton.addEventListener('click', () => {
-            const cityId = cityIdMap[citySelect.value] || cityIdMap.bristol;
-            api.setCity(cityId);
-            api.open();
-            injectDistributorBranding();
-          });
+          mpbeButton.addEventListener('click', openWithCity);
+          openers.forEach(btn => btn.addEventListener('click', openWithCity));
         },
-        { dataBaseUrl: 'https://api.mews-demo.com' }
+        { dataBaseUrl:'https://api.mews-demo.com' }
       );
     }
 
-    // 2) DUAL ENGINES (CTA 2) — each bound to a specific openElements selector
-    function initDualEngines() {
-      if (!window.Mews) return;
-
-      // Property A (left)
+    // 2) DUAL ENGINES (Hotel A / Hotel B)
+    function initDualEngines(){
+      if(!window.Mews) return;
+      // Hotel A -> .open-left
       Mews.Distributor(
-        {
-          configurationIds: ['6feda065-62b7-4276-b192-b26d00d2ce98'],
-          openElements: '.open-left'
-        },
-        function (apiLeft) {
-          // Optional: Set defaults, language, dates, etc.
-          // apiLeft.setLanguageCode('en-GB');
-        },
-        { dataBaseUrl: 'https://api.mews-demo.com' }
+        { configurationIds:['6feda065-62b7-4276-b192-b26d00d2ce98'], openElements:'.open-left' },
+        function(apiLeft){ /* apiLeft.setLanguageCode('en-GB'); */ },
+        { dataBaseUrl:'https://api.mews-demo.com' }
       );
-
-      // Property B (right)
+      // Hotel B -> .open-right
       Mews.Distributor(
-        {
-          configurationIds: ['99a4d7f1-9800-48aa-a950-ae9a014ef5c4'],
-          openElements: '.open-right'
-        },
-        function (apiRight) {
-          // apiRight.setStartDate(new Date());
-        },
-        { dataBaseUrl: 'https://api.mews-demo.com' }
+        { configurationIds:['99a4d7f1-9800-48aa-a950-ae9a014ef5c4'], openElements:'.open-right' },
+        function(apiRight){ /* apiRight.setStartDate(new Date()); */ },
+        { dataBaseUrl:'https://api.mews-demo.com' }
       );
     }
 
-    // Shared: brand the Distributor modal (runs after open)
-    function injectDistributorBranding() {
-      // Try to access the shadow root and inject a <style> with brand tweaks.
+    // Style the Distributor modal to match brand (red primary, landmark header)
+    function injectDistributorBranding(){
       const tryInject = () => {
         const modal = document.querySelector('mews-distributor');
-        if (!modal || !modal.shadowRoot) {
-          requestAnimationFrame(tryInject);
-          return;
-        }
+        if (!modal || !modal.shadowRoot) { requestAnimationFrame(tryInject); return; }
         const styleTag = document.createElement('style');
         styleTag.textContent = `
-          /* Header image & brand colour inside the Distributor shadow DOM */
-          .distributor-header {
-            background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+          .distributor-header{
+            background-image:url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop');
+            background-size:cover;background-position:center;
           }
-          :host {
-            --color-primary: ${getComputedStyle(document.documentElement).getPropertyValue('--brand-accent').trim()} !important;
-            --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-            --border-radius-base: 12px;
+          :host{
+            --color-primary:${getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()} !important;
+            --font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
+            --border-radius-base:12px;
           }
         `;
         modal.shadowRoot.appendChild(styleTag);
@@ -718,21 +583,12 @@
       tryInject();
     }
 
-    // Initialise widgets once the Mews script is ready
+    // Init on DOM ready
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      // In case distributor script with defer is already available later in parse
       setTimeout(() => { initMultiProperty(); initDualEngines(); }, 0);
     } else {
-      window.addEventListener('DOMContentLoaded', () => {
-        initMultiProperty();
-        initDualEngines();
-      });
+      window.addEventListener('DOMContentLoaded', () => { initMultiProperty(); initDualEngines(); });
     }
-
-    // Defensive: disable MPBE button until ready
-    mpbeButton.disabled = true;
-
-    // Accessibility: keyboard open from nav CTA link (already wired via click)
   </script>
 </body>
 </html>
