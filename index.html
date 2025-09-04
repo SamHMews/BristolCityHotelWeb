@@ -85,6 +85,18 @@
     }
     .btn:hover{transform:translateY(-1px)}
     .btn-primary{background:var(--primary);color:#fff;border-color:transparent}
+    /* Wider "Book now" button in the header only */
+#open-primary-book{
+  min-width: 180px;      /* adjust to taste */
+  padding: .9rem 1.6rem; /* keeps height balanced as it gets wider */
+}
+
+@media (max-width: 480px){
+  #open-primary-book{
+    min-width: 140px;    /* prevent overflow on very small screens */
+  }
+}
+
     .btn-outline{background:transparent;color:#fff;border-color:#2a2d31}
 
     /* --------------------------
