@@ -158,6 +158,24 @@
     .price{font-weight:800;color:var(--brand-ink)}
     .card .actions{display:flex;gap:.6rem;margin-top:.35rem;flex-wrap:wrap}
 
+    /* Events & Meetings */
+#events .features{
+  list-style:none;
+  padding:0; margin:.5rem 0 0 0;
+  display:flex; flex-wrap:wrap; gap:.6rem 1rem;
+}
+#events .feature{
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-size:.95rem; color:var(--text);
+  background:#f7f7f9; border:1px solid var(--border);
+  border-radius:999px; padding:.35rem .6rem;
+}
+#events .feature svg{
+  width:20px; height:20px; color:var(--primary);
+  flex:0 0 20px;
+}
+
+
     /* Contact */
     .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}
     .contact .panel{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-1)}
@@ -189,6 +207,8 @@
       <nav aria-label="Main">
         <ul>
           <li><a href="#rooms-hotel-a">Rooms</a></li>
+              <li><a href="#events">Events</a></li>
+
           <li><a href="#amenities">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -374,6 +394,113 @@
       </div>
     </div>
   </section>
+<!-- =========================
+     Events & Meetings
+========================== -->
+<section id="events" aria-labelledby="events-title">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="events-title">Events & Meetings</h2>
+      <a
+        class="btn btn-primary"
+        href="https://app.mews-demo.com/events/be/mewsamsterdam/booking"
+        target="_blank"
+        rel="noopener"
+        aria-label="Open events booking engine in a new tab"
+      >Plan an event</a>
+    </div>
+
+    <p class="muted" style="margin-bottom:1rem; max-width:70ch">
+      Flexible meeting rooms, stylish banqueting halls, and creative breakout spaces—perfect for board meetings, training days, product launches, and private celebrations. On-site AV, fast Wi-Fi, and tailored catering available.
+    </p>
+
+    <div class="grid-3">
+      <!-- Card 1 -->
+      <article class="card">
+        <img class="media" loading="lazy"
+             src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1200&auto=format&fit=crop"
+             alt="Modular conference room with theatre seating" />
+        <div class="body">
+          <h3>Harbourside Suite</h3>
+          <span class="meta">Up to 120 guests • Natural daylight • Waterfront views</span>
+          <ul class="features">
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v10H4zM10 20h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              4K projector
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M4 9a12 12 0 0116 0M7 12a8 8 0 0110 0M10 15a4 4 0 014 0M12 19h0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Fast Wi-Fi
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M7 3v9M11 3v9M7 12h4M17 3v9a3 3 0 01-3 3h-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Banqueting
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <img class="media" loading="lazy"
+             src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop"
+             alt="Boardroom with large table and integrated display" />
+        <div class="body">
+          <h3>City Boardroom</h3>
+          <span class="meta">12–16 delegates • Executive setup • UHD display</span>
+          <ul class="features">
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M9 7v4m6-4v4M6 11h12M12 11v9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              HDMI/USB-C
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M5 8h12v5a4 4 0 01-4 4H9a4 4 0 01-4-4V8zm12 0h2a3 3 0 010 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Refreshments
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M4 14h3l4 4V6L7 10H4zM16 8a4 4 0 010 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Conferencing
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <img class="media" loading="lazy"
+             src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop"
+             alt="Breakout space with casual seating and writable walls" />
+        <div class="body">
+          <h3>Innovation Lab</h3>
+          <span class="meta">Breakouts • Workshop layout • Writable walls</span>
+          <ul class="features">
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M4 20l4-1 9-9-3-3-9 9-1 4zM14 6l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Ideation tools
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.95 6.95l-1.41-1.41M7.46 6.46 6.05 5.05m11.31 0-1.41 1.41M7.46 17.54l-1.41 1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Daylight
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24"><path d="M6 10h12M7 10v7m10-7v7M4 17h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Flexible layout
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div style="margin-top:1rem">
+      <a
+        class="btn btn-primary"
+        href="https://app.mews-demo.com/events/be/mewsamsterdam/booking"
+        target="_blank"
+        rel="noopener"
+      >Open Events Booking</a>
+    </div>
+  </div>
+</section>
 
   <!-- =========================
        Contact / Location
