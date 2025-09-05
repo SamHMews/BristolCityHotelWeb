@@ -175,6 +175,23 @@
   flex:0 0 20px;
 }
 
+    /* Restaurant – Agent 007 Café */
+#restaurant .features{
+  list-style:none;
+  padding:0; margin:.5rem 0 0 0;
+  display:flex; flex-wrap:wrap; gap:.6rem 1rem;
+}
+#restaurant .feature{
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-size:.95rem; color:var(--text);
+  background:#f7f7f9; border:1px solid var(--border);
+  border-radius:999px; padding:.35rem .6rem;
+}
+#restaurant .feature svg{
+  width:20px; height:20px; color:var(--primary); /* same red as CTAs */
+  flex:0 0 20px;
+}
+
 
     /* Contact */
     .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}
@@ -495,6 +512,104 @@
     </div>
   </div>
 </section>
+
+
+  <!-- =========================
+     Agent 007 Café (Asian Fusion)
+========================== -->
+<section id="restaurant" aria-labelledby="restaurant-title">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="restaurant-title">Agent 007 Café — Asian Fusion</h2>
+      <a
+        class="btn btn-primary"
+        href="https://dishcult-next.rdbranch.com/restaurant/agent007cafe"
+        target="_blank"
+        rel="noopener"
+        aria-label="Reserve a table at Agent 007 Café (opens in new tab)"
+      >Reserve a table</a>
+    </div>
+
+    <p class="muted" style="margin-bottom:1rem; max-width:70ch">
+      Sleek, cinematic interiors meet bold Asian-fusion flavours. From bao and sushi rolls to charcoal-grilled skewers and small plates made for sharing, Agent 007 Café is your undercover spot for cocktails and late-night bites.
+    </p>
+
+    <div class="grid-3">
+      <!-- Image card 1 -->
+      <article class="card">
+        <img class="media" loading="lazy"
+             src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1200&auto=format&fit=crop"
+             alt="Ambient restaurant dining room with warm lighting" />
+        <div class="body">
+          <h3>Dining Room</h3>
+          <span class="meta">Warm lighting • Intimate booths • Contemporary design</span>
+          <ul class="features">
+            <li class="feature">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v9M11 3v9M7 12h4M17 3v9a3 3 0 01-3 3h-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              All-day dining
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h12v5a4 4 0 01-4 4H9a4 4 0 01-4-4V8zm12 0h2a3 3 0 010 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Signature teas
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Image card 2 -->
+      <article class="card">
+        <img class="media" loading="lazy"
+             src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop"
+             alt="Open kitchen plating Asian fusion small plates" />
+        <div class="body">
+          <h3>Open Kitchen</h3>
+          <span class="meta">Small plates • Sushi rolls • Charcoal grill</span>
+          <ul class="features">
+            <li class="feature">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H4zM10 20h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Chef’s counter
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Vegetarian options
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Image card 3 -->
+      <article class="card">
+        <img class="media" loading="lazy"
+             src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop"
+             alt="Craft cocktails with Asian-inspired garnishes at the bar" />
+        <div class="body">
+          <h3>Bar & Cocktails</h3>
+          <span class="meta">House infusions • Sake & whisky • Late service</span>
+          <ul class="features">
+            <li class="feature">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10h12M7 10v7m10-7v7M4 17h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Group tables
+            </li>
+            <li class="feature">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a12 12 0 0116 0M7 12a8 8 0 0110 0M10 15a4 4 0 014 0M12 19h0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Fast Wi-Fi
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div style="margin-top:1rem">
+      <a
+        class="btn btn-primary"
+        href="https://dishcult-next.rdbranch.com/restaurant/agent007cafe"
+        target="_blank"
+        rel="noopener"
+      >Reserve a table</a>
+    </div>
+  </div>
+</section>
+
 
   <!-- =========================
        Contact / Location
