@@ -192,6 +192,46 @@
   flex:0 0 20px;
 }
 
+    /* Restaurant – refined reservations embed */
+#restaurant .reservations-embed{ margin-top:1.25rem; }
+#restaurant .embed-header{
+  max-width: 980px;
+  margin: 0 auto .6rem auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: 0 .25rem;
+}
+#restaurant .embed-card{
+  max-width: 980px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;             /* rounds the iframe corners */
+}
+#restaurant .embed-frame{
+  display: block;
+  width: 100%;
+  border: 0;
+  /* Responsive, comfortable height range for booking flows */
+  min-height: clamp(640px, 75vh, 900px);
+}
+#restaurant .embed-alt{
+  text-align: center;
+  margin: .6rem 0 0 0;
+}
+@media (max-width: 600px){
+  #restaurant .embed-header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .25rem;
+  }
+  #restaurant .embed-card{ border-radius: 12px; }
+}
+
 
     /* Contact */
     .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}
@@ -593,16 +633,33 @@
       </article>
     </div>
 
-<div style="margin-top:1.5rem">
-  <iframe
-    id="rd-widget-frame"
-    style="width: 100%; min-height: 710px; border:0"
-    src="https://booking-core.rdbranch.com/widget/Standard/Agent007Cafe/6062"
-    frameborder="0"
-    allow="payment *"
-    title="Reserve a table at Agent 007 Café"
-  ></iframe>
+<!-- Reservations embed (refined) -->
+<div class="reservations-embed">
+  <div class="embed-header">
+    <h3 style="margin:0">Reserve a table</h3>
+    <p class="muted" style="margin:0">Pick your date, party size, and time.</p>
+  </div>
+
+  <div class="embed-card">
+    <iframe
+      id="rd-widget-frame"
+      class="embed-frame"
+      loading="lazy"
+      title="Reserve a table at Agent 007 Café"
+      src="https://booking-core.rdbranch.com/widget/Standard/Agent007Cafe/6062"
+      frameborder="0"
+      allow="payment *"
+    ></iframe>
+  </div>
+
+  <p class="embed-alt muted">
+    Prefer full screen?
+    <a class="link" href="https://dishcult-next.rdbranch.com/restaurant/agent007cafe" target="_blank" rel="noopener">
+      Open the reservation page
+    </a>
+  </p>
 </div>
+
 
   </div>
 </section>
