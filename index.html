@@ -216,7 +216,7 @@
   display: block;
   width: 100%;
   border: 0;
-  height: 500px;                /* fixed height so card isn’t too long */
+  height: 600px;                /* fixed height so card isn’t too long */
   max-height: 75vh;             /* responsive cap */
   overflow-y: auto;             /* allow scroll inside if widget overflows */
 }
@@ -232,6 +232,22 @@
   }
   #restaurant .embed-card{ border-radius: 12px; }
 }
+
+/* Add breathing space before the reservation block */
+#restaurant .reservations-embed {
+  margin-top: 2.5rem;  /* more gap from the 3x cards above */
+}
+
+/* Tidy header spacing */
+#restaurant .embed-header {
+  margin-bottom: 1rem; /* space before the iframe card */
+}
+
+/* Add space below the reservation card */
+#restaurant .embed-card {
+  margin-bottom: 1.25rem;
+}
+
 
 
     /* Contact */
